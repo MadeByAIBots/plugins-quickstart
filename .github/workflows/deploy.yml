@@ -1,0 +1,31 @@
+
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install rsync
+      run: sudo apt-get install -y rsync
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Copy code to Server
+      run: |
+        rsync -r . -e 'ssh -o StrictHostKeyChecking=no' root@45.56.116.239:/root/deploy/plugins-quickstart/
+
+    - name: Run Python app on Server
+      run: |
+        ssh -o StrictHostKeyChecking=no root@45.56.116.239 'cd /root/deploy/plugins-quickstart/ && python3 main.py'
