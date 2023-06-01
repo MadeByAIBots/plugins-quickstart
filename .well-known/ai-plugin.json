@@ -9,9 +9,9 @@
     },
     "api": {
       "type": "openapi",
-      "url": "http://plugin.makerzone.com.au:5003/openapi.yaml",
+      "url": "https://plugin.makerzone.com.au/openapi.yaml",
     },
-    "logo_url": "http://plugin.makerzone.com.au:5003/logo.png",
+    "logo_url": "https://plugin.makerzone.com.au/logo.png",
     "contact_email": "legal@example.com",
     "legal_info_url": "http://example.com/legal"
   }
