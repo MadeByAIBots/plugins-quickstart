@@ -28,4 +28,6 @@ jobs:
 
     - name: Run Python app on Server
       run: |
-        ssh -o StrictHostKeyChecking=no root@45.56.116.239 'cd /root/deploy/plugins-quickstart/ && python3 main.py'
+        ssh -o StrictHostKeyChecking=no root@45.56.116.239 'cd /root/deploy/plugins-quickstart/ && nohup python3 main.py > app.log 2>&1 &'
+        sleep 5
+        ssh -o StrictHostKeyChecking=no root@45.56.116.239 'cat /root/deploy/plugins-quickstart/app.log'
